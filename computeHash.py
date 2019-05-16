@@ -113,6 +113,12 @@ def getHash(video,block):
             
             # Aqui o SHA-256 entra em acao para atualizar
             # o hash ate chegar no h0 para garantir integridade
+            # Nesta parte, basicamente o h0 sera um valor que
+            # e o hash de cada bloco que vai pulando e se atualizando
+            # com os novos hashes gerados de cada bloco.
+            # Precisou-se utilizar aquela condicao pois senao a primeira
+            # atualizacao era em algo vazia e o resultado acabava sendo
+            # um hash final errado
             sha256 = SHA256.new()
             sha256.update(block_info)
             if(h0): sha256.update(h0)
